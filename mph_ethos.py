@@ -23,9 +23,10 @@ headers = ['Algo', 'Profit', 'AMD', 'NVIDIA' ]
 headers.append(card + " rev")
 headers.append(card + " cost")
 headers.append(card + " profit")
+headers.append(card + " " + currency)
 
-row_format_headers = '{:<14}{:>14}{:>14}{:>14}' + '{:>14}' * 3
-row_format = '{:<14}{:>14.8f}{:>14.8f}{:>14.8f}' + '{:>14.8f}' * 3
+row_format_headers = '{:<14}{:>14}{:>14}{:>14}' + '{:>14}' * 4
+row_format = '{:<14}{:>14.8f}{:>14.8f}{:>14.8f}' + '{:>14.8f}' * 4
 print row_format_headers.format(*headers)
 
 if rj['success']:
@@ -35,13 +36,16 @@ if rj['success']:
         rev = 0
         cost = 0
         prof = 0
+        prof_cur = 0
         if algo['algo'].lower() in hashrate_db.algos(card):
             rev = algo['profit'] * hashrate_db.hashrate(card, algo['algo'])
             cost = hashrate_db.power(card, algo['algo']) * 24 * power_cost / 1000 / bc_rate
             prof = rev - cost
+            prof_cur = prof * bc_rate
         fields.append(rev)
         fields.append(cost)
         fields.append(prof)
+        fields.append(prof_cur)
 
         if rev != 0:
             print row_format.format(*fields)
