@@ -16,7 +16,7 @@ hashes = {
         '1070ti': {
             'nist5': { 'hash': 41.0 / 1000, 'power': 110 },
             'xevan': { 'hash': 4 / 1000, 'power': 155 },
-            'neoscrypt': { 'hash': 1.2 / 1000, 'power': 140 },
+            'neoscrypt': { 'hash': 0.940 / 1000, 'power': 120 },
             'lyra2v2': { 'hash': 40.0 / 1000, 'power': 110 },
             'lyra2re2': { 'hash': 40.0 / 1000, 'power': 110 },
             'equihash': { 'hash': 500.0 / (1000 * 1000 * 1000), 'power': 115 },
@@ -27,7 +27,7 @@ hashes = {
             'nist5': { 'hash': 56.1 / 1000, 'power': 150 },
             'skunk': { 'hash': 47.5 / 1000, 'power': 190 },
             'xevan': { 'hash': 5 / 1000, 'power': 200 },
-            'neoscrypt': { 'hash': 1.5 / 1000, 'power': 210 },
+            'neoscrypt': { 'hash': 1.340 / 1000, 'power': 170 },
             'lyra2v2': { 'hash': 59.0 / 1000, 'power': 170 },
             'lyra2re2': { 'hash': 59.0 / 1000, 'power': 170 },
             'equihash' : { 'hash': 680.0 / (1000 * 1000 * 1000), 'power': 190 },
