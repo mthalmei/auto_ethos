@@ -43,4 +43,5 @@ if rj['success']:
         fields.append(cost)
         fields.append(prof)
 
-        print row_format.format(*fields)
+        if rev != 0:
+            print row_format.format(*fields)

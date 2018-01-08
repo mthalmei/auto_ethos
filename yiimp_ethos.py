@@ -72,4 +72,5 @@ if rj:
         fields.append(prof)
         fields.append(prof_cur)
 
-        print(row_format.format(*fields))
+        if rev != 0:
+            print(row_format.format(*fields))
