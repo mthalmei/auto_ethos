@@ -1,40 +1,13 @@
 #!/usr/bin/python2
 import requests
 import sys
+import hashrate_db
 
 currency = 'EUR'
 power_cost = 0.15
 
-hashes = {
-        'RX470' : {
-            'Cryptonight': { 'hash': 700.0 / (1000 * 1000 * 1000), 'power': 90 },
-            'Ethash': { 'hash': 27.0 / 1000, 'power': 120 },
-            },
-        # '1070': {
-        # 'Ethash': { 'hash': 30.0 / 1000, 'power': 120 },
-        # 'Groestl': { 'hash': 35.5 / 1000, 'power': 130 },
-        # 'X11': { 'hash': 11.5 / 1000, 'power': 120 },
-        # 'Cryptonight': { 'hash': 500.0 / (1000 * 1000 * 1000), 'power': 100 },
-        # 'Equihash': { 'hash': 430.0 / (1000 * 1000 * 1000), 'power': 120 },
-        # 'Lyra2RE2': { 'hash': 35.5 / 1000, 'power': 130 },
-        # 'NeoScrypt': { 'hash': 1000.0 / ( 1000 * 1000), 'power': 155 },
-        # },
-        '1070ti': {
-            'Lyra2RE2': { 'hash': 41.0 / 1000, 'power': 110 },
-            'Equihash': { 'hash': 500.0 / (1000 * 1000 * 1000), 'power': 115 },
-            'Cryptonight': { 'hash': 600.0 / (1000 * 1000 * 1000), 'power': 100 },
-            'Lyra2z': { 'hash': 2250.0 / (1000 * 1000), 'power': 100 },
-            },
-        '1080ti': {
-            'Lyra2RE2': { 'hash': 56.1 / 1000, 'power': 150 },
-            'Equihash' : { 'hash': 680.0 / (1000 * 1000 * 1000), 'power': 190 },
-            'Cryptonight': { 'hash': 830.0 / (1000 * 1000 * 1000), 'power': 140 },
-            'Lyra2z': { 'hash': 3200.0 / (1000 * 1000), 'power': 140 },
-            },
-        }
-
-if len(sys.argv) < 2 or not sys.argv[1] in hashes.keys():
-    print('Need to give exactly one card: ' + ', '.join(hashes.keys()))
+if len(sys.argv) < 2 or not sys.argv[1].lower() in hashrate_db.cards():
+    print('Need to give exactly one card: ' + ', '.join(hashrate_db.cards()))
     exit(0)
 card = sys.argv[1]
 
@@ -62,9 +35,9 @@ if rj['success']:
         rev = 0
         cost = 0
         prof = 0
-        if algo['algo'] in hashes[card]:
-            rev = algo['profit'] * hashes[card][algo['algo']]['hash']
-            cost = hashes[card][algo['algo']]['power'] * 24 * power_cost / 1000 / bc_rate
+        if algo['algo'].lower() in hashrate_db.algos(card):
+            rev = algo['profit'] * hashrate_db.hashrate(card, algo['algo'])
+            cost = hashrate_db.power(card, algo['algo']) * 24 * power_cost / 1000 / bc_rate
             prof = rev - cost
         fields.append(rev)
         fields.append(cost)
