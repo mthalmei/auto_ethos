@@ -11,12 +11,25 @@ if len(sys.argv) < 2 or not sys.argv[1].lower() in hashrate_db.cards():
     exit(0)
 card = sys.argv[1]
 
+pools = {
+        'bsod.pw': 'http://bsod.pw/api/currencies',
+        'zpool.ca': 'http://www.zpool.ca/api/currencies',
+        'ahashpool.com': 'https://www.ahashpool.com/api/currencies',
+}
+pool = 'bsod.pw'
+if len(sys.argv) >= 3:
+    pool = sys.argv[2]
+    if pool not in pools.keys():
+        print('Pool not found. Available pools: ' + ', '.join(pools.keys()))
+        exit(0)
+
 r = requests.get('https://blockchain.info/de/ticker')
 rj = r.json()
 bc_rate = rj[currency]['15m']
 print "Bitcoin price: {} {}/BTC\n".format(bc_rate, currency)
 
-r = requests.get('http://www.zpool.ca/api/currencies')
+print "Using yiimp pool: {}".format(pool)
+r = requests.get(pools[pool])
 rj = r.json()
 
 headers = ['currency', 'algo', 'estimate']
