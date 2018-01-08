@@ -1,6 +1,8 @@
 #!/usr/bin/python2
+from __future__ import print_function
 import requests
 import sys
+import time
 import hashrate_db
 
 currency = 'EUR'
@@ -26,10 +28,18 @@ if len(sys.argv) >= 3:
 r = requests.get('https://blockchain.info/de/ticker')
 rj = r.json()
 bc_rate = rj[currency]['15m']
-print "Bitcoin price: {} {}/BTC\n".format(bc_rate, currency)
+print ("Bitcoin price: {} {}/BTC\n".format(bc_rate, currency))
 
-print "Using yiimp pool: {}".format(pool)
+print ("Using yiimp pool: {} ".format(pool), end='')
+
 r = requests.get(pools[pool])
+while (r.content == 'limit'):
+    sys.stdout.write('.')
+    sys.stdout.flush()
+    time.sleep(1)
+    r = requests.get(pools[pool])
+print('')
+
 rj = r.json()
 
 headers = ['currency', 'algo', 'estimate']
@@ -40,7 +50,7 @@ headers.append(card + " " + currency)
 
 row_format_headers = '{:<14}{:<14}{:>14}' + '{:>14}' * 4
 row_format = '{:<14}{:<14}{:>14.8f}' + '{:>14.8f}' * 4
-print row_format_headers.format(*headers)
+print (row_format_headers.format(*headers))
 
 
 if rj:
@@ -62,4 +72,4 @@ if rj:
         fields.append(prof)
         fields.append(prof_cur)
 
-        print row_format.format(*fields)
+        print(row_format.format(*fields))
