@@ -32,15 +32,25 @@ print ("Bitcoin price: {} {}/BTC\n".format(bc_rate, currency))
 
 print ("Using yiimp pool: {} ".format(pool), end='')
 
-r = requests.get(pools[pool])
-while (r.content == 'limit'):
+cookies = []
+
+while True:
     sys.stdout.write('.')
     sys.stdout.flush()
+    r = requests.get(pools[pool], cookies=cookies)
+    try:
+        rj = r.json()
+        break
+    except ValueError:
+        if (r.cookies):
+            cookies = r.cookies
+        elif r.content != 'limit':
+            print('Unexpected content received:')
+            print(r.content)
+            exit(0)
     time.sleep(1)
-    r = requests.get(pools[pool])
-print('')
 
-rj = r.json()
+print('')
 
 headers = ['currency', 'algo', 'estimate']
 headers.append(card + " rev")
