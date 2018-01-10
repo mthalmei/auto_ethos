@@ -18,7 +18,7 @@ pool = 'bsod.pw'
 if len(sys.argv) >= 3:
     pool = sys.argv[2]
     if pool not in pools.YiimpPool.pool_urls.keys():
-        print('Pool not found. Available pools: ' + ','.join(pools.YiimpPool.pools_urls.keys()))
+        print('Pool not found. Available pools: ' + ', '.join(pools.YiimpPool.pool_urls.keys()))
         exit(0)
 
 p = pools.YiimpPool(pool, currency, power_cost)
