@@ -25,7 +25,7 @@ hashes = {
             },
         '1080ti': {
             'nist5': { 'hash': 56.1 / 1000, 'power': 150 },
-            'skunk': { 'hash': 47.5 / 1000, 'power': 190 },
+            'skunk': { 'hash': 46.0 / 1000, 'power': 170 },
             'xevan': { 'hash': 5 / 1000, 'power': 200 },
             'neoscrypt': { 'hash': 1.340 / 1000, 'power': 170 },
             'lyra2v2': { 'hash': 59.0 / 1000, 'power': 170 },
