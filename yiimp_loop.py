@@ -27,8 +27,8 @@ res = p.calc_profits(card, fetch=True)
 headers = ['time']
 headers.extend(res.keys())
 
-row_format_headers = '{:<20}' + '{:>14}' * len(res.keys())
-row_format = '{:<20}' + '{:>14.8f}' * len(res.keys())
+row_format_headers = '{:<20}' + '{:>12}' * len(res.keys())
+row_format = '{:<20}' + '{:>12.8f}' * len(res.keys())
 print (row_format_headers.format(*headers))
 
 while True:
