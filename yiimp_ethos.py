@@ -14,7 +14,7 @@ if len(sys.argv) < 2 or not sys.argv[1].lower() in hashrate_db.cards():
 card = sys.argv[1]
 
 pools = {
-        'bsod.pw': 'http://bsod.pw/api/currencies',
+        'bsod.pw': 'http://api.bsod.pw/api/currencies',
         'zpool.ca': 'http://www.zpool.ca/api/currencies',
         'ahashpool.com': 'https://www.ahashpool.com/api/currencies',
 }

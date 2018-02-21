@@ -45,7 +45,7 @@ class YiimpPool(Pool):
     """
 
     pool_urls = {
-            'bsod.pw': 'http://bsod.pw/api/currencies',
+            'bsod.pw': 'http://api.bsod.pw/api/currencies',
             'zpool.ca': 'http://www.zpool.ca/api/currencies',
             'ahashpool.com': 'https://www.ahashpool.com/api/currencies',
     }
