@@ -32,11 +32,12 @@ row_format = '{:<20}' + '{:>12.8f}' * len(res.keys())
 print (row_format_headers.format(*headers))
 
 while True:
-    fields = []
-    fields.append(time.strftime('%Y-%m-%d %H:%M:%S'))
-    for coin in res.keys():
-        fields.append(res[coin])
-    print(row_format.format(*fields))
-    sys.stdout.flush()
+    if res:
+        fields = []
+        fields.append(time.strftime('%Y-%m-%d %H:%M:%S'))
+        for coin in res.keys():
+            fields.append(res[coin])
+        print(row_format.format(*fields))
+        sys.stdout.flush()
     time.sleep(600)
     res = p.calc_profits(card, fetch=True)

@@ -1,5 +1,6 @@
 import requests
 import time
+import sys
 import hashrate_db
 
 class Pool:
@@ -19,10 +20,13 @@ class Pool:
         self._bc_rate = rj[self._currency]['15m']
 
     def calc_profits(self, card, fetch=False):
-        if fetch:
-            self.fetch_btc_price()
-            self.fetch_data()
         result = {}
+        if fetch:
+            try:
+                self.fetch_btc_price()
+                self.fetch_data()
+            except ValueError:
+                return result
         for coin in self._data.keys():
             algo = self._data[coin]
             if algo['algo'].lower() in hashrate_db.algos(card):
@@ -60,7 +64,7 @@ class YiimpPool(Pool):
                 if (r.cookies):
                     cookies = r.cookies
                 elif r.content != 'limit':
-                    print('Unexpected content received:')
-                    print(r.content)
-                    exit(0)
+                    sys.stderr.write('Unexpected content received:')
+                    sys.stderr.write(r.content)
+                    raise
             time.sleep(1)
