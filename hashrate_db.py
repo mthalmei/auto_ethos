@@ -23,6 +23,7 @@ hashes = {
             'equihash': { 'hash': 500.0 / (1000 * 1000 * 1000), 'power': 115 },
             'cryptonight': { 'hash': 600.0 / (1000 * 1000 * 1000), 'power': 100 },
             'lyra2z': { 'hash': 2250.0 / (1000 * 1000), 'power': 100 },
+            'phi1612': { 'hash': 20.0 / 1000, 'power': 120 },
             },
         '1080ti': {
             'nist5': { 'hash': 56.1 / 1000, 'power': 150 },
@@ -34,6 +35,7 @@ hashes = {
             'equihash' : { 'hash': 680.0 / (1000 * 1000 * 1000), 'power': 190 },
             'cryptonight': { 'hash': 830.0 / (1000 * 1000 * 1000), 'power': 140 },
             'lyra2z': { 'hash': 3200.0 / (1000 * 1000), 'power': 140 },
+            'phi1612': { 'hash': 30.0 / 1000, 'power': 170 },
             },
         }
 
