@@ -48,6 +48,7 @@ class YiimpPool(Pool):
             'bsod.pw': 'http://api.bsod.pw/api/currencies',
             'zpool.ca': 'http://www.zpool.ca/api/currencies',
             'ahashpool.com': 'https://www.ahashpool.com/api/currencies',
+            'altminer.net': 'https://altminer.net/api/currencies',
     }
 
     def __init__(self, pool, currency, power_cost):

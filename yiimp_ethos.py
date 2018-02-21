@@ -17,6 +17,7 @@ pools = {
         'bsod.pw': 'http://api.bsod.pw/api/currencies',
         'zpool.ca': 'http://www.zpool.ca/api/currencies',
         'ahashpool.com': 'https://www.ahashpool.com/api/currencies',
+        'altminer.net': 'https://altminer.net/api/currencies',
 }
 pool = 'bsod.pw'
 if len(sys.argv) >= 3:
