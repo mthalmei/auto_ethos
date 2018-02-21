@@ -14,6 +14,7 @@ hashes = {
         # 'NeoScrypt': { 'hash': 1000.0 / ( 1000 * 1000), 'power': 155 },
         # },
         '1070ti': {
+            'ethash': { 'hash': 30.5 / 1000, 'power': 135 },
             'nist5': { 'hash': 41.0 / 1000, 'power': 110 },
             'xevan': { 'hash': 4 / 1000, 'power': 155 },
             'neoscrypt': { 'hash': 0.940 / 1000, 'power': 120 },
